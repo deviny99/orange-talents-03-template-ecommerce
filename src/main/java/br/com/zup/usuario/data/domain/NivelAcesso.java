@@ -2,10 +2,11 @@ package br.com.zup.usuario.data.domain;
 
 import org.springframework.security.core.GrantedAuthority;
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "niveis_acesso")
-public class NivelAcesso implements GrantedAuthority {
+public class NivelAcesso implements GrantedAuthority, Serializable {
 
     @Id
     @Enumerated(EnumType.STRING)

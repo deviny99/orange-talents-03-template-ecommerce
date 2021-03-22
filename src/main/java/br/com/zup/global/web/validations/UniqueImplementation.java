@@ -6,7 +6,7 @@ import javax.persistence.Query;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class UniqueImplementation implements ConstraintValidator<Unique,String> {
+public class UniqueImplementation implements ConstraintValidator<Unique,Object> {
 
     @PersistenceContext
     EntityManager entityManager;
@@ -20,11 +20,11 @@ public class UniqueImplementation implements ConstraintValidator<Unique,String> 
     }
 
     @Override
-    public boolean isValid(String value, ConstraintValidatorContext constraintValidatorContext) {
+    public boolean isValid(Object value, ConstraintValidatorContext constraintValidatorContext) {
         return isExistValueField(value);
     }
 
-    private boolean isExistValueField(String value){
+    private boolean isExistValueField(Object value){
         StringBuilder queryBuilder = new StringBuilder();
         Query query = this.entityManager.createQuery(queryBuilder.append("SELECT 1 FROM ")
         .append(this.domainName)
