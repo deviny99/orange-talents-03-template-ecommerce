@@ -21,7 +21,6 @@ public class CategoriaRequest {
                             @ExistsID(targetEntity = Categoria.class, nameFieldID = "id", message = "Não contém uma categoria cadastrada com o ID informado") Long categoriaSuperID) {
         this.id = id;
         this.nome = nome;
-        System.out.println(categoriaSuperID);
         this.categoriaSuperID = categoriaSuperID;
     }
 

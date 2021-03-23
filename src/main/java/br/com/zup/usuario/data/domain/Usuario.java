@@ -2,8 +2,6 @@ package br.com.zup.usuario.data.domain;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -24,6 +22,9 @@ public class Usuario implements UserDetails, Serializable {
     private LocalDateTime instanteCadastro = LocalDateTime.now();
     @ManyToMany(fetch = FetchType.EAGER)
     private List<NivelAcesso> niveisDeAcesso = new ArrayList<>();
+
+    @Deprecated
+    public Usuario(){}
 
     public Usuario(Long id, String email, String senha, List<NivelAcesso> niveisDeAcesso) {
         this.id = id;
@@ -49,22 +50,22 @@ public class Usuario implements UserDetails, Serializable {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 
     public LocalDateTime getInstanteCadastro() {

@@ -13,6 +13,8 @@ public class NivelAcesso implements GrantedAuthority, Serializable {
     @Column(unique = true)
     private Roles role;
 
+    @Deprecated
+    public NivelAcesso(){}
 
     public NivelAcesso(Roles role) {
         this.role = role;

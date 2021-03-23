@@ -43,9 +43,10 @@ public class Categoria implements Serializable {
         return categoriaSuper;
     }
 
-    /* verifica se a referencia passada para categoria mãe não é ela mesma.
-       precisamos dessa validação quando for fazer um update.
-     */
+    /*
+        verifica se a referencia passada para categoria mãe não é ela mesma.
+        precisamos dessa validação quando for fazer um update.
+    */
     private boolean isMyself(Categoria categoria){
 
         if (categoria == null || categoria.equals(this))
