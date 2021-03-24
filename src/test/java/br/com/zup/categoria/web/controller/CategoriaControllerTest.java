@@ -42,16 +42,6 @@ public class CategoriaControllerTest {
         Assertions.assertEquals(200,responseEntity.getStatusCodeValue());
     }
 
-    @Test
-    void deveSalvarCategoria2(){
-
-        Mockito.when(categoriaRepository.save(injetarCategoria())).thenThrow(RuntimeException.class);
-        try {
-                Mockito.verifyNoInteractions(this.categoriaRepository);
-
-        }catch (Exception e){}
-
-    }
 
     //argument captor -> capturar um objeto gerado dentro de um mock
 

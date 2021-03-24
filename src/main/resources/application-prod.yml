@@ -1,0 +1,4 @@
+mercado-livre:
+  jwt:
+    secret: A5769&8*JAJ$Xah$dj!qjhAJK454a@1
+    expiration: 90000

@@ -6,10 +6,12 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import java.util.Date;
 
+@Profile({"prod","test"})
 @Service
 public class TokenServiceImpl implements TokenService {
 
@@ -18,6 +20,14 @@ public class TokenServiceImpl implements TokenService {
     @Value("${mercado-livre.jwt.expiration}")
     private String expiration;
 
+    @Deprecated
+    public TokenServiceImpl(){ }
+
+    public TokenServiceImpl(String secretKey, String expiration){
+        this.secretKey = secretKey;
+        this.expiration = expiration;
+    }
+
     @Override
     public String gerarToken(Authentication userAutenticado) {
 
@@ -25,10 +35,19 @@ public class TokenServiceImpl implements TokenService {
         Date today = new Date();
         Date dtExpiration = new Date(today.getTime()+Long.parseLong(expiration));
 
+        return tokenBuilder("API do Mercado Livre",
+                usuario.getId().toString(),
+                secretKey,
+                today,
+                dtExpiration);
+
+    }
+
+    private String tokenBuilder(String nameAPI, String subject, String secretKey, Date issuadAt, Date dtExpiration){
         return Jwts.builder()
-                .setIssuer("API do Mercado Livro")
-                .setSubject(usuario.getId().toString())
-                .setIssuedAt(today)
+                .setIssuer(nameAPI)
+                .setSubject(subject)
+                .setIssuedAt(issuadAt)
                 .setExpiration(dtExpiration)
                 .signWith(SignatureAlgorithm.HS256,secretKey)
                 .compact();

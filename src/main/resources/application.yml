@@ -27,6 +27,8 @@ spring:
     password: root
     testWhileIdle: true
     validationQuery: Select 1
+    platform: h2-dev
+    initialization-mode: always
   h2:
     console:
       enabled: true

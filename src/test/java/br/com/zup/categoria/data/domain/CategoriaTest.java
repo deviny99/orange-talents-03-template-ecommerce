@@ -13,7 +13,6 @@ public class CategoriaTest {
         Categoria categoria = categoriaRequest.toModel();
         Assertions.assertNull(categoria.getCategoriaSuper());
         Assertions.assertEquals(1L,categoria.getId());
-
     }
 
     @Test

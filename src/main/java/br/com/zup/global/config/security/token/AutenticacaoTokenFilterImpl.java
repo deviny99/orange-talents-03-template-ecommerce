@@ -5,6 +5,7 @@ import br.com.zup.global.config.security.token.interfac.TokenService;
 import br.com.zup.usuario.data.domain.Usuario;
 import br.com.zup.usuario.data.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Optional;
 
+@Profile({"prod","test"})
 @Service
 public class AutenticacaoTokenFilterImpl extends OncePerRequestFilter implements AutenticacaoTokenFilter {
 
