@@ -4,19 +4,18 @@ import br.com.zup.produto.data.domain.Produto;
 import br.com.zup.produto.data.domain.ProdutoBuilderImpl;
 import br.com.zup.produto.data.repository.ProdutoRepository;
 import br.com.zup.produto.web.dto.request.ProdutoRequest;
+import br.com.zup.usuario.data.domain.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/produto")
+@RequestMapping("/produtos")
 public class ProdutoController {
 
     private final ProdutoRepository produtoRepository;
@@ -38,11 +37,13 @@ public class ProdutoController {
                 .addQuantidade(produtoRequest.getQuantidade())
                 .addCaracteristicas(produtoRequest.mapList())
                 .addValor(produtoRequest.getValor())
+                .addUsuario((Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal())
                 .build();
 
         produto = this.produtoRepository.save(produto);
         return ResponseEntity.created(URI.create(String.format("/pessoa/%d", produto.getId())))
                 .body(Map.of("id",produto.getId()));
     }
+
 
 }

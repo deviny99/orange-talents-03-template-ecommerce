@@ -4,14 +4,12 @@ import br.com.zup.categoria.data.domain.Categoria;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
 public class ProdutoTest {
-
 
     @BeforeEach
     private void setup(){
@@ -28,7 +26,6 @@ public class ProdutoTest {
         caracteristicas.add(new Caracteristica(6L,"Caracteristica 6","6"));
         return caracteristicas;
     }
-
 
 
     @Test

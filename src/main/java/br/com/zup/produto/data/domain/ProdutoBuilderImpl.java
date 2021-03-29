@@ -1,6 +1,9 @@
 package br.com.zup.produto.data.domain;
 
 import br.com.zup.categoria.data.domain.Categoria;
+import br.com.zup.imagem.data.domain.Imagem;
+import br.com.zup.usuario.data.domain.Usuario;
+
 import java.math.BigDecimal;
 import java.util.Set;
 
@@ -13,11 +16,19 @@ public class ProdutoBuilderImpl implements  ProdutoBuilder {
     private Set<Caracteristica> caracteristicas;
     private String descricao;
     private Categoria categoria;
+    private Set<Imagem> imagems;
+    private Usuario user;
 
 
     @Override
     public ProdutoBuilder addNome(String nome) {
         this.nome = nome;
+        return this;
+    }
+
+    @Override
+    public ProdutoBuilder addUsuario(Usuario user) {
+        this.user = user;
         return this;
     }
 
@@ -64,6 +75,18 @@ public class ProdutoBuilderImpl implements  ProdutoBuilder {
     }
 
     @Override
+    public ProdutoBuilder addImagem(Imagem imagem) {
+        this.imagems.add(imagem);
+        return this;
+    }
+
+    @Override
+    public ProdutoBuilder addImagems(Set<Imagem> imagems) {
+        this.imagems.addAll(imagems);
+        return this;
+    }
+
+    @Override
     public ProdutoBuilder addId(Long id) {
         this.id = id;
         return this;
@@ -71,6 +94,8 @@ public class ProdutoBuilderImpl implements  ProdutoBuilder {
 
     @Override
     public Produto build() {
-        return new Produto(this.id,this.nome,this.valor,this.quantidade,this.caracteristicas,this.descricao,this.categoria);
+
+        return new Produto(this.id,this.nome,this.valor,this.quantidade,
+                this.caracteristicas,this.descricao,this.categoria, this.imagems,this.user);
     }
 }

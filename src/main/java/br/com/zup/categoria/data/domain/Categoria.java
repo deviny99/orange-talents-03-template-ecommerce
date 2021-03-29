@@ -16,6 +16,9 @@ public class Categoria implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     private Categoria categoriaSuper;
 
+    @Deprecated
+    public Categoria(){}
+
     public Categoria(Long id, String nome, Categoria categoriaSuper) {
         this.id = id;
         this.nome = nome;

@@ -7,6 +7,8 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
+
 import java.util.Map;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.mapping;
@@ -21,6 +23,11 @@ public class ErrorHandler {
     public ResponseEntity<?> handleControllerException(ControllerException exceptionController){
         return status(exceptionController.getStatus())
                 .body(Map.of("mensagem",exceptionController.getLocalizedMessage()));
+    }
+    @ExceptionHandler(MaxUploadSizeExceededException.class)
+    public ResponseEntity<?> handleHttpMessageNotReadableException(MaxUploadSizeExceededException exception) {
+        return badRequest().body(Map.of(
+                "mensagem", "O campo imagens excede o tamanho máximo permitido de 1048576 bytes"));
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
