@@ -13,8 +13,7 @@ public class AwsStorage implements Storage{
         if(file.isFile() && file != null){
             return URL+bucket.getPath();
         }
-        throw ControllerException.badRequest("Não foi possivel fazer o upload da " +
-                "do arquivo na AWS Storage");
+        throw ControllerException.badRequest("Não foi possivel fazer o upload do arquivo na AWS Storage");
     }
 
     @Override

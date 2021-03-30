@@ -29,7 +29,7 @@ public class CategoriaController {
     @Transactional
     public ResponseEntity<?> cadastrarCategoria(@RequestBody @Valid CategoriaRequest categoriaRequest)
     {
-        Categoria categoria = this.categoriaRepository.save(categoriaRequest.toModel());
+        Categoria categoria = this.categoriaRepository.save(categoriaRequest.toModel(null));
         return ResponseEntity.ok(new CategoriaResponse(categoria));
     }
 

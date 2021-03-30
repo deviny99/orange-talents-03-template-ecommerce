@@ -26,6 +26,7 @@ public class Imagem {
     public String getUri() {
         return uri;
     }
+
     public Long getId() {
         return id;
     }

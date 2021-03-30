@@ -44,18 +44,6 @@ public class Produto implements Serializable {
     @Deprecated
     public Produto(){}
 
-    public Produto(Long id, String nome, BigDecimal valor, Integer quantidade,
-                   Set<Caracteristica> caracteristicas, String descricao, Categoria categoria) {
-        this.id = id;
-        this.nome = nome;
-        this.valor = valor;
-        this.quantidade = quantidade;
-        this.caracteristicas = caracteristicas;
-        this.descricao = descricao;
-        this.categoria = categoria;
-        this.instanteCadastro = LocalDateTime.now();
-    }
-
     public Produto(Long id, String nome, @Min(1) BigDecimal valor, @Min(0) Integer quantidade, @Size(min = 3, message = "Um produto deve ter no minimo 3 caracteristicas") Set<Caracteristica> caracteristicas, String descricao,
                    Categoria categoria, Set<Imagem> imagems,Usuario usuario) {
         this.id = id;
@@ -70,29 +58,12 @@ public class Produto implements Serializable {
         this.usuario = usuario;
     }
 
-
     public Long getId() {
         return id;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public BigDecimal getValor() {
-        return valor;
-    }
-
-    public Integer getQuantidade() {
-        return quantidade;
-    }
-
     public Set<Caracteristica> getCaracteristicas() {
         return caracteristicas;
-    }
-
-    public String getDescricao() {
-        return descricao;
     }
 
     public Categoria getCategoria() {
@@ -103,9 +74,6 @@ public class Produto implements Serializable {
         return usuario;
     }
 
-    public LocalDateTime getInstanteCadastro() {
-        return instanteCadastro;
-    }
 
     public Set<Imagem> getImagens() {
         return imagens;

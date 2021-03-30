@@ -36,8 +36,8 @@ public class CategoriaControllerTest {
     @Test
     void deveSalvarCategoria(){
 
-        Mockito.when(categoriaRepository.save(injetarCategoria())).thenReturn(devolverCategoria());
-        ResponseEntity<?> responseEntity = this.categoriaController.cadastrarCategoria((new CategoriaRequest(null,"Eletrodomesticos",2L)));
+       Mockito.when(categoriaRepository.save(injetarCategoria())).thenReturn(devolverCategoria());
+        ResponseEntity<?> responseEntity = this.categoriaController.cadastrarCategoria((new CategoriaRequest("Eletrodomesticos",2L)));
         Mockito.verify(categoriaRepository).save(injetarCategoria());
         Assertions.assertEquals(200,responseEntity.getStatusCodeValue());
     }

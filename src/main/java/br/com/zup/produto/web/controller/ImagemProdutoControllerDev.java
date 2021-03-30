@@ -17,30 +17,26 @@ import java.util.List;
 import java.util.Map;
 import static br.com.zup.global.web.exception.ControllerException.badRequest;
 
-@Profile({"prod","test"})
+@Profile("dev")
 @RestController
 @RequestMapping("/produtos/imagem")
-public class ImagemProdutoController {
+public class ImagemProdutoControllerDev {
 
     private final ProdutoImagemService produtoImagemService;
     private final ProdutoRepository produtoRepository;
 
     @Autowired
-    public ImagemProdutoController(ProdutoImagemService produtoImagemService, ProdutoRepository produtoRepository){
+    public ImagemProdutoControllerDev(ProdutoImagemService produtoImagemService, ProdutoRepository produtoRepository){
         this.produtoImagemService = produtoImagemService;
         this.produtoRepository = produtoRepository;
     }
+
 
     @PostMapping("{produto}")
     @Transactional
     public ResponseEntity<?> cadastrarImagemProduto(@RequestParam("imagens") MultipartFile[] multipartFiles,
                                                     @PathVariable("produto") Long idProduto) throws IOException {
         List<String> uris = new ArrayList<>();
-        Long idUserLogado = ((Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
-
-        if(!this.produtoRepository.findByProdutoAndUser(idProduto,idUserLogado).isPresent()){
-            throw badRequest("Não foi possivel adicionar imagem ao produto pois o produto pertence a outro usuario");
-        }
 
             if (multipartFiles.length > 0 && idProduto != null) {
                 for (MultipartFile multipartFile : multipartFiles) {

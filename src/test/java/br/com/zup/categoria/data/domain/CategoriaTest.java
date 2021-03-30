@@ -1,6 +1,5 @@
 package br.com.zup.categoria.data.domain;
 
-import br.com.zup.categoria.web.dto.request.CategoriaRequest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -9,8 +8,8 @@ public class CategoriaTest {
     @Test
     void naoDeveReceberElaMesmaComoCategoriaMae(){
 
-        CategoriaRequest categoriaRequest = new CategoriaRequest(1L,"Celulares",1L);
-        Categoria categoria = categoriaRequest.toModel();
+        Categoria categoria = new Categoria(1l,"Celulares",new Categoria(1l));
+
         Assertions.assertNull(categoria.getCategoriaSuper());
         Assertions.assertEquals(1L,categoria.getId());
     }
@@ -18,8 +17,8 @@ public class CategoriaTest {
     @Test
     void deveReceberOutraCategoriaComoMae(){
 
-        CategoriaRequest categoriaRequest = new CategoriaRequest(1L,"Celulares",2L);
-        Categoria categoria = categoriaRequest.toModel();
+        Categoria categoria = new Categoria(1l,"Celulares",new Categoria(2l));
+        categoria.setId(1l);
         Assertions.assertNotNull(categoria.getCategoriaSuper());
         Assertions.assertEquals(1L,categoria.getId());
     }

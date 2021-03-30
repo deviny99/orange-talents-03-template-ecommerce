@@ -1,7 +1,9 @@
-package br.com.zup.produto.data.domain;
+package br.com.zup.produto.data.domain.builder;
 
 import br.com.zup.categoria.data.domain.Categoria;
 import br.com.zup.imagem.data.domain.Imagem;
+import br.com.zup.produto.data.domain.Caracteristica;
+import br.com.zup.produto.data.domain.Produto;
 import br.com.zup.usuario.data.domain.Usuario;
 
 import java.math.BigDecimal;
@@ -18,7 +20,6 @@ public class ProdutoBuilderImpl implements  ProdutoBuilder {
     private Categoria categoria;
     private Set<Imagem> imagems;
     private Usuario user;
-
 
     @Override
     public ProdutoBuilder addNome(String nome) {

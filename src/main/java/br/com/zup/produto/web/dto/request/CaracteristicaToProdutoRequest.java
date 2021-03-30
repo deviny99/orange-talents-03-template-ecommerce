@@ -1,23 +1,21 @@
 package br.com.zup.produto.web.dto.request;
 
 import br.com.zup.produto.data.domain.Caracteristica;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
 public class CaracteristicaToProdutoRequest {
 
     @NotBlank
+    @JsonProperty("nome")
     private String nome;
     @NotBlank
+    @JsonProperty("valor")
     private String valor;
 
     @Deprecated
     public CaracteristicaToProdutoRequest() { }
-
-    public CaracteristicaToProdutoRequest(@NotBlank String nome, @NotBlank String valor) {
-        this.nome = nome;
-        this.valor = valor;
-    }
 
     public String getNome() {
         return nome;

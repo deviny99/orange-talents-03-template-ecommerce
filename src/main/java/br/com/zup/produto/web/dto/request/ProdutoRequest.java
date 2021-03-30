@@ -3,6 +3,7 @@ package br.com.zup.produto.web.dto.request;
 import br.com.zup.categoria.data.domain.Categoria;
 import br.com.zup.global.web.validations.ExistsID;
 import br.com.zup.produto.data.domain.Caracteristica;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.lang.NonNull;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -14,41 +15,30 @@ import java.util.stream.Collectors;
 
 public class ProdutoRequest {
 
-    private Long id;
     @NotBlank
+    @JsonProperty("nome")
     private String nome;
     @NotNull
     @Min(1)
+    @JsonProperty("valor")
     private BigDecimal valor;
     @NotNull
     @Min(0)
+    @JsonProperty("quantidade")
     private Integer quantidade;
     @Size(min = 3, message = "Um produto deve ter no minimo 3 caracteristicas")
+    @JsonProperty("caracteristicas")
     private Set<CaracteristicaToProdutoRequest> caracteristicas;
     @Size(max = 1000)
+    @JsonProperty("descricao")
     private String descricao;
     @NonNull
     @ExistsID(targetEntity = Categoria.class,nameFieldID = "id",message = "Não existe cadastrado o ID de categoria informado")
+    @JsonProperty("categoriaID")
     private Long categoriaID;
 
     @Deprecated
     public ProdutoRequest(){}
-
-    public ProdutoRequest(Long id, @NotBlank String nome, @NotNull @Size(min = 1) BigDecimal valor, @NotNull @Size(min = 0) Integer quantidade,
-                          @Size(min = 3, message = "Um produto deve ter no minimo 3 caracteristicas") Set<CaracteristicaToProdutoRequest> caracteristicas,
-                          @Size(max = 1000) String descricao, @NonNull Long categoriaID) {
-        this.id = id;
-        this.nome = nome;
-        this.valor = valor;
-        this.quantidade = quantidade;
-        this.caracteristicas = caracteristicas;
-        this.descricao = descricao;
-        this.categoriaID = categoriaID;
-    }
-
-    public Long getId() {
-        return id;
-    }
 
     public String getNome() {
         return nome;
@@ -68,10 +58,6 @@ public class ProdutoRequest {
 
     public Long getCategoriaID() {
         return categoriaID;
-    }
-
-    public Set<CaracteristicaToProdutoRequest> getCaracteristicas() {
-        return caracteristicas;
     }
 
     public Set<Caracteristica> mapList(){

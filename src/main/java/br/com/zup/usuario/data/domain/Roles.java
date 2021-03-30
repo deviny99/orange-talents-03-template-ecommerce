@@ -6,7 +6,7 @@ public enum Roles {
 
     private String value;
 
-    private Roles(String value){
+    Roles(String value){
         this.value = value;
     }
 

@@ -1,4 +1,4 @@
-package br.com.zup.usuario.web.dto.response;
+package br.com.zup.global.config.security.token.response;
 
 public class JwtResponse {
 

@@ -68,24 +68,8 @@ public class Usuario implements UserDetails, Serializable {
         return true;
     }
 
-    public LocalDateTime getInstanteCadastro() {
-        return instanteCadastro;
-    }
-
     public Long getId() {
         return id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public List<NivelAcesso> getNiveisDeAcesso() {
-        return niveisDeAcesso;
     }
 
     @Override

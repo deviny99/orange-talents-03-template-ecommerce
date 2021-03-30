@@ -1,6 +1,7 @@
 package br.com.zup.produto.data.domain;
 
 import br.com.zup.categoria.data.domain.Categoria;
+import br.com.zup.usuario.data.domain.Usuario;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,7 +33,7 @@ public class ProdutoTest {
     public void naoDeveAceitarMesmasCaracteristicas(){
 
         Produto produto = new Produto(null,"Iphone 11",new BigDecimal(12000.00),2,new HashSet<Caracteristica>(),
-                "Produto caro", new Categoria(1L,"Celulares",null));
+                "Produto caro", new Categoria(1L,"Celulares",null),new HashSet(), new Usuario(1l,"user","senha",null));
 
         for(Caracteristica caracteristica : this.listaCaracteristicas()){
             produto.getCaracteristicas().add(caracteristica);

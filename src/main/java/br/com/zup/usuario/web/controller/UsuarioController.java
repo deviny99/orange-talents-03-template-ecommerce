@@ -16,7 +16,6 @@ import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @RestController
 @RequestMapping("/user")
 public class UsuarioController {
@@ -35,12 +34,7 @@ public class UsuarioController {
     {
         List<NivelAcesso> niveisAcesso = new ArrayList<>();
         niveisAcesso.add(new NivelAcesso(Roles.ROLE_USER));
-
-        Usuario usuario = this.usuarioRepository.save(new Usuario(usuarioRequest.getId(),
-                usuarioRequest.getEmail(),
-                usuarioRequest.getSenha(),
-                niveisAcesso));
-
+        Usuario usuario = this.usuarioRepository.save(usuarioRequest.toModel(null,niveisAcesso));
         return ResponseEntity.ok("");
     }
 

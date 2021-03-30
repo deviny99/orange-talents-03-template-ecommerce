@@ -8,7 +8,7 @@ spring:
   application:
     name: mercado-livre
   profiles:
-    active: prod
+    active: dev
   jpa:
     show-sql: true
     hibernate:

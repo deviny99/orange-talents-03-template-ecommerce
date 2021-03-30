@@ -14,7 +14,7 @@ public class GoogleStorage implements Storage{
             return URL+bucket.getPath();
         }
         throw ControllerException.badRequest("Não foi possivel fazer o upload da " +
-                "do arquivo no GCP Storage ");
+                "do arquivo no GCP Storage");
     }
 
     @Override

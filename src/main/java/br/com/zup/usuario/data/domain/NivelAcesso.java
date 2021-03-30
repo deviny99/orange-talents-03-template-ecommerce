@@ -25,8 +25,4 @@ public class NivelAcesso implements GrantedAuthority, Serializable {
         return this.role.toString();
     }
 
-
-    public Roles getRole(){
-        return this.role;
-    }
 }

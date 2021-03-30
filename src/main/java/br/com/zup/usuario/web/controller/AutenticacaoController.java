@@ -2,7 +2,7 @@ package br.com.zup.usuario.web.controller;
 
 import br.com.zup.global.config.security.token.interfac.TokenService;
 import br.com.zup.usuario.web.dto.request.LoginFormRequest;
-import br.com.zup.usuario.web.dto.response.JwtResponse;
+import br.com.zup.global.config.security.token.response.JwtResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.ResponseEntity;
