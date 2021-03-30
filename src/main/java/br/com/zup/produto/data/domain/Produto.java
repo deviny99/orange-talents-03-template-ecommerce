@@ -3,12 +3,15 @@ package br.com.zup.produto.data.domain;
 import br.com.zup.categoria.data.domain.Categoria;
 import br.com.zup.imagem.data.domain.Imagem;
 import br.com.zup.usuario.data.domain.Usuario;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -29,7 +32,7 @@ public class Produto implements Serializable {
     private Integer quantidade;
     @Size(min = 3, message = "Um produto deve ter no minimo 3 caracteristicas")
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Caracteristica> caracteristicas;
+    private Set<Caracteristica> caracteristicas = new HashSet<>();
     @Column(name = "descricao", length = 1000)
     private String descricao;
     @ManyToOne(fetch = FetchType.EAGER)
@@ -71,9 +74,12 @@ public class Produto implements Serializable {
     }
 
     public Usuario getUsuario() {
-        return usuario;
+        return this.usuario;
     }
 
+    public String getNome() {
+        return this.nome;
+    }
 
     public Set<Imagem> getImagens() {
         return imagens;

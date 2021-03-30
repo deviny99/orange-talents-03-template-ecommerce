@@ -19,6 +19,7 @@ spring:
       hibernate:
         jdbc:
           time_zone: UTC
+    open-in-view: false
 
   datasource:
     driverClassName: org.h2.Driver
@@ -33,6 +34,8 @@ spring:
     console:
       enabled: true
       path: /h2-console
+
+
 
 mercado-livre:
   jwt:

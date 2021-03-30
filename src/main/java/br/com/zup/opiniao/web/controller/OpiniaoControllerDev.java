@@ -36,7 +36,6 @@ public class OpiniaoControllerDev {
     public ResponseEntity<?> cadastrarOpiniao(@RequestBody @Valid OpiniaoRequest opiniaoRequest ){
 
         Usuario userLogado = this.userLogado();
-        //(Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Opiniao opiniao = this.opiniaoRepository.save(opiniaoRequest.toModel(null,userLogado));
         return ResponseEntity.ok(Map.of("id",opiniao.getId()));
     }
@@ -44,6 +43,6 @@ public class OpiniaoControllerDev {
     private Usuario userLogado(){
         List<NivelAcesso> niveisAcesso = new ArrayList<>();
         niveisAcesso.add(new NivelAcesso(Roles.ROLE_USER));
-        return new Usuario(1l,"","",niveisAcesso);
+        return new Usuario(1L,"email@email","123",niveisAcesso);
     }
 }

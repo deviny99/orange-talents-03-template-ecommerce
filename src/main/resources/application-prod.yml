@@ -8,7 +8,8 @@ spring:
     name: mercado-livre
 
   jpa:
-    show-sql: true
+    open-in-view: false
+    show-sql: false
     hibernate:
       ddl-auto: create
       database-platform: org.hibernate.dialect.H2Dialect
@@ -25,7 +26,7 @@ spring:
     password: root
     testWhileIdle: true
     validationQuery: Select 1
-    platform: h2-dev
+    platform: h2-prod
     initialization-mode: always
   h2:
     console:
@@ -36,3 +37,4 @@ mercado-livre:
   jwt:
     secret: A5769&8*JAJ$Xah$dj!qjhAJK454a@1
     expiration: 90000
+
