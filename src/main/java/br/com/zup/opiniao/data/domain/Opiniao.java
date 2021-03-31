@@ -20,7 +20,11 @@ public class Opiniao {
     @ManyToOne
     private Usuario usuario;
     @ManyToOne
+    @JoinColumn(name="produto_id", referencedColumnName="id",nullable=false)
     private Produto produto;
+
+    @Deprecated
+    public Opiniao(){ }
 
     public Opiniao(Long id, Integer nota, String titulo, String descricao, Usuario usuario, Produto produto) {
         this.id = id;
@@ -33,5 +37,17 @@ public class Opiniao {
 
     public Long getId() {
         return id;
+    }
+
+    public Integer getNota() {
+        return nota;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public String getTitulo() {
+        return titulo;
     }
 }

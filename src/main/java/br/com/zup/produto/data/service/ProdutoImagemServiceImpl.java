@@ -1,8 +1,8 @@
 package br.com.zup.produto.data.service;
 
-import br.com.zup.global.config.storage.Bucket;
-import br.com.zup.global.config.upload.FileUpload;
-import br.com.zup.global.config.storage.Storage;
+import br.com.zup.global.util.storage.Bucket;
+import br.com.zup.global.util.upload.FileUpload;
+import br.com.zup.global.util.storage.Storage;
 import br.com.zup.global.web.exception.ControllerException;
 import br.com.zup.imagem.data.domain.Imagem;
 import br.com.zup.imagem.data.repository.ImagemRepository;

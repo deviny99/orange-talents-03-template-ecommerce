@@ -1,5 +1,6 @@
 package br.com.zup.produto.web.controller;
 
+
 import br.com.zup.produto.data.domain.Produto;
 import br.com.zup.produto.data.domain.builder.ProdutoBuilderImpl;
 import br.com.zup.produto.data.repository.ProdutoRepository;
@@ -10,12 +11,8 @@ import br.com.zup.usuario.data.domain.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.ArrayList;
@@ -55,6 +52,7 @@ public class ProdutoControllerDev {
         return ResponseEntity.created(URI.create(String.format("/pessoa/%d", produto.getId())))
                 .body(Map.of("id",produto.getId()));
     }
+
 
     private Usuario simularUsuarioLogado() {
         List<NivelAcesso> niveisAcesso = new ArrayList<>();

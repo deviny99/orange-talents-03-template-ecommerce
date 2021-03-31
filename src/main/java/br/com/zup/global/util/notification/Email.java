@@ -1,4 +1,4 @@
-package br.com.zup.pergunta.util.notification;
+package br.com.zup.global.util.notification;
 
 public interface Email {
 

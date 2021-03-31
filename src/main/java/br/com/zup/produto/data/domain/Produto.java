@@ -3,15 +3,12 @@ package br.com.zup.produto.data.domain;
 import br.com.zup.categoria.data.domain.Categoria;
 import br.com.zup.imagem.data.domain.Imagem;
 import br.com.zup.usuario.data.domain.Usuario;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -32,17 +29,17 @@ public class Produto implements Serializable {
     private Integer quantidade;
     @Size(min = 3, message = "Um produto deve ter no minimo 3 caracteristicas")
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Caracteristica> caracteristicas = new HashSet<>();
+    private Set<Caracteristica> caracteristicas;
     @Column(name = "descricao", length = 1000)
     private String descricao;
     @ManyToOne(fetch = FetchType.EAGER)
     private Categoria categoria;
     @Column(name = "instanteCadastro", nullable = false)
     private LocalDateTime instanteCadastro = LocalDateTime.now();
-    @OneToMany(fetch = FetchType.LAZY)
-    private Set<Imagem> imagens;
     @ManyToOne(fetch = FetchType.EAGER)
     private Usuario usuario;
+    @OneToMany(fetch = FetchType.LAZY)
+    private Set<Imagem> imagens;
 
     @Deprecated
     public Produto(){}
@@ -83,6 +80,18 @@ public class Produto implements Serializable {
 
     public Set<Imagem> getImagens() {
         return imagens;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public BigDecimal getValor() {
+        return valor;
+    }
+
+    public Integer getQuantidade() {
+        return quantidade;
     }
 
     @Override

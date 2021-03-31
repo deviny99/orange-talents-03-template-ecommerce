@@ -1,4 +1,4 @@
-package br.com.zup.global.config.storage;
+package br.com.zup.global.util.storage;
 
 public class Bucket {
 

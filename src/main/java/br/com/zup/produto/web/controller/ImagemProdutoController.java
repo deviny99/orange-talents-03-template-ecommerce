@@ -1,6 +1,6 @@
 package br.com.zup.produto.web.controller;
 
-import br.com.zup.global.config.storage.GoogleStorage;
+import br.com.zup.global.util.storage.GoogleStorage;
 import br.com.zup.produto.data.repository.ProdutoRepository;
 import br.com.zup.produto.data.service.ProdutoImagemService;
 import br.com.zup.usuario.data.domain.Usuario;

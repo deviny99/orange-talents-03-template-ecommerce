@@ -1,4 +1,4 @@
-package br.com.zup.global.config.upload;
+package br.com.zup.global.util.upload;
 
 import java.io.IOException;
 import java.io.InputStream;

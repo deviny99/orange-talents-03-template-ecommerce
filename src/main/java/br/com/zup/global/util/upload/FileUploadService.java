@@ -1,4 +1,4 @@
-package br.com.zup.global.config.upload;
+package br.com.zup.global.util.upload;
 
 import br.com.zup.global.web.exception.ControllerException;
 import org.apache.commons.io.IOUtils;

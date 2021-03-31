@@ -19,6 +19,7 @@ public class Pergunta {
     @ManyToOne(fetch = FetchType.EAGER)
     private Usuario usuario;
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="produto_id", referencedColumnName="id",nullable=false)
     private Produto produto;
 
     @Deprecated

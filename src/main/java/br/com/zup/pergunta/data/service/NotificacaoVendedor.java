@@ -2,7 +2,7 @@ package br.com.zup.pergunta.data.service;
 
 import br.com.zup.pergunta.data.domain.Pergunta;
 import br.com.zup.pergunta.data.repository.PerguntaRepository;
-import br.com.zup.pergunta.util.notification.Email;
+import br.com.zup.global.util.notification.Email;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

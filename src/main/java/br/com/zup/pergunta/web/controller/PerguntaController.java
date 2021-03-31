@@ -2,7 +2,7 @@ package br.com.zup.pergunta.web.controller;
 
 import br.com.zup.pergunta.data.domain.Pergunta;
 import br.com.zup.pergunta.data.repository.PerguntaRepository;
-import br.com.zup.pergunta.util.notification.Gmail;
+import br.com.zup.global.util.notification.Gmail;
 import br.com.zup.pergunta.data.service.NotificacaoVendedor;
 import br.com.zup.pergunta.web.dto.request.PerguntaRequest;
 import br.com.zup.usuario.data.domain.Usuario;

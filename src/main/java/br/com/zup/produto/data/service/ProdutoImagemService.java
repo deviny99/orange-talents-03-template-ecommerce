@@ -1,6 +1,6 @@
 package br.com.zup.produto.data.service;
 
-import br.com.zup.global.config.storage.Storage;
+import br.com.zup.global.util.storage.Storage;
 import java.io.IOException;
 import java.io.InputStream;
 

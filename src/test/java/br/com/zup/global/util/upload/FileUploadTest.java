@@ -1,4 +1,4 @@
-package br.com.zup.global.config.upload;
+package br.com.zup.global.util.upload;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,7 +18,7 @@ public class FileUploadTest {
     @Test
     void deveFazerUpload() throws IOException {
 
-        InputStream inputStream = new FileInputStream(new File("src\\test\\java\\br\\com\\zup\\global\\config\\upload\\FileUploadTest.java"));
+        InputStream inputStream = new FileInputStream(new File("src\\test\\java\\br\\com\\zup\\global\\util\\upload\\FileUploadTest.java"));
         String retorno = this.fileUpload.uploadDirTemp("teste",inputStream);
         Assertions.assertNotNull(retorno);
         Assertions.assertNotNull(inputStream);

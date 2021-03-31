@@ -1,4 +1,4 @@
-package br.com.zup.global.config.storage;
+package br.com.zup.global.util.storage;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,7 +18,7 @@ public class GoogleStorageTest {
     void deveFazerUpload(){
 
         Bucket bucket = new Bucket("testes","unitarios");
-        String retorno = this.storage.upload(bucket,new File("src\\test\\java\\br\\com\\zup\\global\\config\\storage\\GoogleStorageTest.java"));
+        String retorno = this.storage.upload(bucket,new File("src\\test\\java\\br\\com\\zup\\global\\util\\storage\\GoogleStorageTest.java"));
         Assertions.assertNotNull(retorno);
         Assertions.assertFalse(retorno.isEmpty());
     }
