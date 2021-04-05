@@ -1,6 +1,7 @@
-package br.com.zup.mercadolivre.produto.web.controller;
+package br.com.zup.mercadolivre.produto.web.controller.dev;
 
 
+import br.com.zup.dev.UserLogadoMock;
 import br.com.zup.mercadolivre.produto.data.domain.Produto;
 import br.com.zup.mercadolivre.produto.data.domain.builder.ProdutoBuilderImpl;
 import br.com.zup.mercadolivre.produto.data.repository.ProdutoRepository;
@@ -43,7 +44,7 @@ public class ProdutoControllerDev {
                 .addQuantidade(produtoRequest.getQuantidade())
                 .addCaracteristicas(produtoRequest.mapList())
                 .addValor(produtoRequest.getValor())
-                .addUsuario(this.simularUsuarioLogado())
+                .addUsuario(UserLogadoMock.simularUsuarioLogado())
                 .build();
 
         produto = this.produtoRepository.save(produto);
@@ -51,13 +52,6 @@ public class ProdutoControllerDev {
 
         return ResponseEntity.created(URI.create(String.format("/pessoa/%d", produto.getId())))
                 .body(Map.of("id",produto.getId()));
-    }
-
-
-    private Usuario simularUsuarioLogado() {
-        List<NivelAcesso> niveisAcesso = new ArrayList<>();
-        niveisAcesso.add(new NivelAcesso(Roles.ROLE_USER));
-        return new Usuario(1L,"email@email","123456",niveisAcesso);
     }
 
 }

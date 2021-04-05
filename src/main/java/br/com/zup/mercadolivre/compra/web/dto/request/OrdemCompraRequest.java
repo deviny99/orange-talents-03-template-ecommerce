@@ -2,7 +2,6 @@ package br.com.zup.mercadolivre.compra.web.dto.request;
 
 import br.com.zup.mercadolivre.compra.data.domain.Compra;
 import br.com.zup.mercadolivre.compra.data.domain.StatusCompra;
-import br.com.zup.mercadolivre.produto.data.repository.ProdutoRepository;
 import br.com.zup.mercadolivre.usuario.data.domain.Usuario;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.validation.Valid;

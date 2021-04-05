@@ -1,14 +1,10 @@
 package br.com.zup.mercadolivre.compra.web.dto.request.validation;
 
-import br.com.zup.mercadolivre.compra.web.dto.request.ProdutoQuantidadeRequest;
-import br.com.zup.mercadolivre.global.web.validations.ExistsID;
-import br.com.zup.mercadolivre.produto.data.domain.Produto;
 import br.com.zup.mercadolivre.produto.data.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import javax.validation.Valid;
 import java.lang.reflect.Field;
 
 @Component

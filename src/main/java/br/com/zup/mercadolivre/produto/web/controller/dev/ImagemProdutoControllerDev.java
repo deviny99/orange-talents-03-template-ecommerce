@@ -1,4 +1,4 @@
-package br.com.zup.mercadolivre.produto.web.controller;
+package br.com.zup.mercadolivre.produto.web.controller.dev;
 
 import br.com.zup.mercadolivre.global.util.storage.GoogleStorage;
 import br.com.zup.mercadolivre.produto.data.repository.ProdutoRepository;

@@ -1,7 +1,6 @@
 package br.com.zup.mercadolivre.compra.web.dto.response;
 
 import br.com.zup.mercadolivre.compra.data.domain.Compra;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -21,8 +20,7 @@ public class OrdemDeCompraResponse {
 
     public OrdemDeCompraResponse(Compra compra)
     {
-        this.comprador = compra.getComprador();
-        this.gatewayDePagamento = compra.getComprador();
+        this.comprador = compra.getComprador().getUsername();
         this.gatewayDePagamento = compra.getGatewayDePagamento();
         this.produtos = compra.getProdutos().stream().map(ProdutoCompraResponse::new).collect(Collectors.toSet());
         this.statusCompra = compra.getStatusCompra().getValue();

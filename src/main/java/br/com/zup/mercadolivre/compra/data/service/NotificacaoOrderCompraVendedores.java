@@ -7,12 +7,10 @@ import br.com.zup.mercadolivre.global.util.notification.Notification;
 
 public class NotificacaoOrderCompraVendedores {
 
-
     public static void notificar(Compra compra, Email email){
         if(compra != null){
 
                 StringBuilder stringBuilder = new StringBuilder();
-
 
                 for (ProdutoQuantidade produto : compra.getProdutos()){
                     stringBuilder
@@ -20,7 +18,7 @@ public class NotificacaoOrderCompraVendedores {
                             .append("\nNome do Produto: "+produto.getProduto().getNome())
                             .append("\nQuantidade: "+produto.getQuantidade())
                             .append("\nValor Total: "+produto.getProduto().getValor().doubleValue()*produto.getQuantidade());
-                    send(produto.getProduto().getUsuario().getUsername(), compra.getComprador(),stringBuilder.toString(), email);
+                    send(produto.getProduto().getUsuario().getUsername(), compra.getComprador().getUsername(),stringBuilder.toString(), email);
                 }
         }
     }

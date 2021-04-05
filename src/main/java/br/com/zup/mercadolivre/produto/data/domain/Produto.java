@@ -3,10 +3,6 @@ package br.com.zup.mercadolivre.produto.data.domain;
 import br.com.zup.mercadolivre.categoria.data.domain.Categoria;
 import br.com.zup.mercadolivre.imagem.data.domain.Imagem;
 import br.com.zup.mercadolivre.usuario.data.domain.Usuario;
-import io.swagger.models.auth.In;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
@@ -99,6 +95,10 @@ public class Produto implements Serializable {
         if(quantidadeAbatida <= this.quantidade){
             this.quantidade -= quantidadeAbatida;
         }
+    }
+
+    public void adicionarQuantidade(Integer quantidadeAdicionar){
+            this.quantidade += quantidadeAdicionar;
     }
 
     public String getDescricao() {

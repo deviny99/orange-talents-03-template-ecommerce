@@ -1,9 +1,11 @@
 package br.com.zup.mercadolivre.compra.data.domain;
 
+import br.com.zup.global.StatusTransacao;
 import br.com.zup.mercadolivre.produto.data.domain.Produto;
 import br.com.zup.mercadolivre.usuario.data.domain.Usuario;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.springframework.util.Assert;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -37,6 +39,9 @@ public class Compra {
     private LocalDateTime instanteCompraAprovada;
     @Transient
     private BigDecimal valorTotal;
+    @OneToMany( cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private Set<TransacaoCompra> transacoes = new HashSet<>();
+
 
     @Deprecated
     public Compra(){}
@@ -64,41 +69,27 @@ public class Compra {
         return setProdutosQtd;
     }
 
-    public Set<ProdutoQuantidade> getProdutos() {
-        return produtos;
+    public boolean compraAprovadaComSucesso(){
+        Set<TransacaoCompra> transacoesComprasSucesso = this.transacoes.stream().filter(TransacaoCompra :: isAprovada)
+                .collect(Collectors.toSet());
+        return !transacoesComprasSucesso.isEmpty();
     }
 
-    public BigDecimal getValorTotal(){
-        calculaValorTotal();
-        return this.valorTotal;
+    public void addTransacao(TransacaoCompra transacaoCompra){
+        Assert.isTrue(!this.transacoes.contains(transacaoCompra),
+                "Já existe uma transacao igual a essa processada");
+        Assert.isTrue(!this.compraAprovadaComSucesso(),"Essa Compra já foi concluida com sucesso!");
+        if(transacaoCompra.equals(StatusTransacao.APROVADO)){
+            aprovarCompra();
+        }
+
+        this.transacoes.add(transacaoCompra);
     }
 
-    public void setStatusCompra(StatusCompra statusCompra) {
-        this.statusCompra = statusCompra;
-    }
 
-    public Long getId() {
-        return id;
-    }
-
-    public StatusCompra getStatusCompra() {
-        return statusCompra;
-    }
-
-    public LocalDateTime getInstanteCompraAprovada() {
-        return instanteCompraAprovada;
-    }
-
-    public LocalDateTime getInstanteCompra() {
-        return instanteCompra;
-    }
-
-    public String getGatewayDePagamento() {
-        return gatewayDePagamento;
-    }
-
-    public String getComprador() {
-        return comprador.getUsername();
+    private void aprovarCompra(){
+        this.statusCompra = StatusCompra.APROVADA;
+        this.instanteCompraAprovada = this.statusCompra.getInstanteCompraAprovada();
     }
 
     private void calculaValorTotal(){
@@ -114,5 +105,38 @@ public class Compra {
         });
 
         this.valorTotal = valorTotal.get();
+    }
+
+    public void setStatusCompra(StatusCompra statusCompra) {
+        this.statusCompra = statusCompra;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public StatusCompra getStatusCompra() {
+        return statusCompra;
+    }
+
+    public LocalDateTime getInstanteCompra() {
+        return instanteCompra;
+    }
+
+    public String getGatewayDePagamento() {
+        return gatewayDePagamento;
+    }
+
+    public Usuario getComprador() {
+        return comprador;
+    }
+
+    public Set<ProdutoQuantidade> getProdutos() {
+        return produtos;
+    }
+
+    public BigDecimal getValorTotal(){
+        calculaValorTotal();
+        return this.valorTotal;
     }
 }

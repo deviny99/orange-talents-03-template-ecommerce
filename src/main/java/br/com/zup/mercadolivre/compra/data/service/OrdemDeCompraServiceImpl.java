@@ -1,14 +1,16 @@
 package br.com.zup.mercadolivre.compra.data.service;
 
+import br.com.zup.mercadolivre.clientes.GatewayClient;
 import br.com.zup.mercadolivre.compra.data.domain.Compra;
 import br.com.zup.mercadolivre.compra.data.domain.StatusCompra;
 import br.com.zup.mercadolivre.compra.data.repository.CompraRepository;
 import br.com.zup.mercadolivre.global.util.notification.Email;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.swing.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -41,15 +43,22 @@ public class OrdemDeCompraServiceImpl implements OrdemDeCompraService {
         }
     }
 
+    private Map urlMap(String nameGateway){
+        Map<String, String> url = new HashMap<>();
+        url.put("url","http://localhost:8080/mercado-livre/finalizar/compra/"+nameGateway.toLowerCase()+"/{idCompra}/{idTransacao}");
+        url.put("method","POST");
+        return url;
+    }
+
     @Transactional
     @Override
-    public void notificarGateway(Compra compra){
-        System.out.println();
-        System.out.println("notificanto o gateway...");
-        System.out.println();
+    public void notificarGateway(Compra compra,GatewayClient gateway,String nameGateway){
+        if (gateway.realizarTransacao(urlMap(nameGateway),compra.getId()).getStatusCode().equals(HttpStatus.BAD_REQUEST)){
+            this.alterarStatusCompra(compra, StatusCompra.ERRO_PAGAMENTO);
+        }else{
+            this.alterarStatusCompra(compra, StatusCompra.AGUARDANDO);
+        }
 
-
-        this.alterarStatusCompra(compra, StatusCompra.AGUARDANDO);
     }
 
     @Override
@@ -64,10 +73,14 @@ public class OrdemDeCompraServiceImpl implements OrdemDeCompraService {
     @Override
     @Transactional
     public Compra alterarStatusCompra(Compra compra, StatusCompra statusCompra){
+
         Optional<Compra> optionalCompra = this.compraRepository.findById(compra.getId());
         if (optionalCompra.isPresent()){
             compra = optionalCompra.get();
-            compra.setStatusCompra(statusCompra);
+            if (!statusCompra.equals(StatusCompra.APROVADA)){
+                compra.setStatusCompra(statusCompra);
+            }
+
         }
         return this.compraRepository.save(compra);
     }
